@@ -5,7 +5,7 @@ public class GameSettings : ScriptableObject
 {
     private static GameSettings _instance;
 
-    [SerializeField] private int _maxCorpsesOnScene = 30;
+    [SerializeField] private int _maxCorpsesOnScene = 40;
     [SerializeField] private float _spawnInterval = 1.5f;
     [SerializeField] private float _gameOverDelay = 5.0f;
     [SerializeField] private float _sceneFadingTime = 0.5f;

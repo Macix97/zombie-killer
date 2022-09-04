@@ -28,11 +28,6 @@ public class EnemySpawner : MonoBehaviour
         _spawnerCoroutine = StartCoroutine(OnSpawnerCoroutine());
     }
 
-    private void FixedUpdate()
-    {
-        ClearCorpses();
-    }
-
     private IEnumerator OnSpawnerCoroutine()
     {
         while (true)
