@@ -21,7 +21,7 @@ public class PlayerCharacter : Entity
     private Vector3 _currentMoveDirection;
     private Vector3 _moveDirectionVelocity;
 
-    public static Action OnPlayerDead;
+    public static event Action OnPlayerDead;
 
     public static Transform Transform => _instance ? _instance.transform : null;
     public static Vector3 Position => _instance ? _instance.transform.position : Vector3.zero;

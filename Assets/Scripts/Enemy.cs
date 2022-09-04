@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,7 +16,8 @@ public class Enemy : Entity
     private static List<Enemy> _corpses = new List<Enemy>();
 
     public static List<Enemy> Corpses => _corpses;
-    public static int EnemyCount => _alive.Count;
+
+    public static event Action OnEnemyDead;
 
     private const float DecisionInterval = 0.1f;
 
@@ -57,7 +59,7 @@ public class Enemy : Entity
 
     private IEnumerator OnDecisionCoroutine()
     {
-        yield return new WaitForSeconds(Random.Range(0.0f, DecisionInterval));
+        yield return new WaitForSeconds(UnityEngine.Random.Range(0.0f, DecisionInterval));
         while (true)
         {
             switch (CurrentState)
@@ -99,6 +101,7 @@ public class Enemy : Entity
     {
         if (CurrentState.IsDead()) return;
         base.Kill(sourcePosition);
+        OnEnemyDead?.Invoke();
         _corpses.Add(this);
         _alive.Remove(this);
         StopCoroutine(_decisionCoroutine);

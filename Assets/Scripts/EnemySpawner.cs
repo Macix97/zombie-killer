@@ -13,11 +13,13 @@ public class EnemySpawner : MonoBehaviour
 
     private void OnEnable()
     {
+        Enemy.OnEnemyDead += ClearCorpses;
         PlayerCharacter.OnPlayerDead += StopSpawner;
     }
 
     private void OnDisable()
     {
+        Enemy.OnEnemyDead -= ClearCorpses;
         PlayerCharacter.OnPlayerDead -= StopSpawner;
     }
 
@@ -52,7 +54,7 @@ public class EnemySpawner : MonoBehaviour
     {
         if (Enemy.Corpses.Count <= GameSettings.MaxCorpsesOnScene) return;
         if (Enemy.Corpses.TryFind(e => !PlayerCamera.IsCameraSeeTransform(e.transform), out Enemy enemy)) Destroy(enemy.gameObject);
-        else Destroy(Enemy.Corpses.RandomElement());
+        else Destroy(Enemy.Corpses.RandomElement().gameObject);
     }
 
     private void StopSpawner()

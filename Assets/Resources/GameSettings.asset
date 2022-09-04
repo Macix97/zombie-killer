@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7584c5ba0df222144a6cbb4a56c585e8, type: 3}
   m_Name: GameSettings
   m_EditorClassIdentifier: 
-  _maxCorpsesOnScene: 30
-  _spawnInterval: 1.5
+  _maxCorpsesOnScene: 40
+  _spawnInterval: 1
   _gameOverDelay: 5
   _sceneFadingTime: 0.5
   _effectLifeTime: 5
