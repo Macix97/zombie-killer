@@ -44,9 +44,9 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.1
-  m_Height: 0.5
-  m_Direction: 0
+  m_Radius: 0.005
+  m_Height: 0.03
+  m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &99992812291012682
 Rigidbody:
@@ -78,5 +78,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lifeTime: 5
   _velocity: 200
-  _hitClip: {fileID: 0}
   _hitEffectPrefab: {fileID: 100002, guid: 3b1513bcb86426b4795879be6a128ed7, type: 3}
