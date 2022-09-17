@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2022412571267634264}
   - component: {fileID: 2022412571267634271}
   - component: {fileID: 9207503162029542628}
+  - component: {fileID: 230331745258399866}
   m_Layer: 0
   m_Name: PlayerCamera
   m_TagString: MainCamera
@@ -95,3 +96,19 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   _rotationAngle: {x: 30, y: -120, z: 0}
+--- !u!114 &230331745258399866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2022412571267634269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c49b4cc203aa6414fae5c798d1d0e7d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EventMask:
+    serializedVersion: 2
+    m_Bits: 256
+  m_MaxRayIntersections: 0

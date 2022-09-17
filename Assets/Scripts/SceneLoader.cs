@@ -12,6 +12,9 @@ public class SceneLoader : MonoBehaviour
     private Image _fadeImage;
 
     public static event Action<SceneName> OnLoadingStarted;
+    public static event Action<SceneName> OnLoadingFinished;
+
+    public static SceneName CurrentSceneName => Enum.TryParse<SceneName>(SceneManager.GetActiveScene().name, true, out SceneName sceneName) ? sceneName : SceneName.Unspecified;
 
     private const int SortingOrder = 100;
 
@@ -29,13 +32,13 @@ public class SceneLoader : MonoBehaviour
         _instance._fadeImage = _instance.gameObject.AddComponent<Image>();
         _instance._fadeImage.color = Color.black;
         _instance._fadingTime = fadingTime;
-        _instance.StartCoroutine(_instance.OnLoadingProcess(sceneName.ToString()));
+        _instance.StartCoroutine(_instance.OnLoadingProcess(sceneName));
     }
 
-    private IEnumerator OnLoadingProcess(string sceneName)
+    private IEnumerator OnLoadingProcess(SceneName sceneName)
     {
         yield return OnFadeOut();
-        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneName);
+        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneName.ToString());
         asyncOperation.allowSceneActivation = false;
         while (!asyncOperation.isDone)
         {
@@ -44,6 +47,7 @@ public class SceneLoader : MonoBehaviour
         }
         yield return OnFadeIn();
         Destroy(gameObject);
+        OnLoadingFinished?.Invoke(sceneName);
     }
 
     private IEnumerator OnFadeOut()

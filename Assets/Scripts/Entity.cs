@@ -1,9 +1,9 @@
-using System;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(Animator), typeof(NavMeshAgent), typeof(CapsuleCollider))]
-public class Entity : MonoBehaviour
+public class Entity : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [Header(nameof(Entity))]
     [SerializeField] private float _speed = 5.0f;
@@ -22,8 +22,7 @@ public class Entity : MonoBehaviour
     protected Animator Animator => _animator;
     protected AudioClip DeadClip => _deadClip;
     protected NavMeshAgent NavMeshAgent => _navMeshAgent;
-
-    public Vector3 HitEffectPosition => transform.position + Vector3.up * _collider.height * 0.5f;
+    protected Vector3 HitEffectPosition => transform.position + Vector3.up * _collider.height * 0.5f;
 
     protected virtual void Awake()
     {
@@ -41,6 +40,10 @@ public class Entity : MonoBehaviour
     protected virtual void Update() { }
 
     protected virtual void UpdateMovementAnimation() { }
+
+    public virtual void OnPointerEnter(PointerEventData _) { }
+
+    public virtual void OnPointerExit(PointerEventData _) { }
 
     public virtual void Kill(Vector3 sourcePosition)
     {

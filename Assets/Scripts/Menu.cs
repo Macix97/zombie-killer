@@ -7,7 +7,6 @@ public class Menu : MonoBehaviour
 {
     [SerializeField] private Type _type;
 
-
     private bool _isPause;
     private Animator _animator;
 

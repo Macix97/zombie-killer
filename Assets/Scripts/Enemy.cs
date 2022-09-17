@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Enemy : Entity
 {
@@ -9,8 +10,10 @@ public class Enemy : Entity
     [SerializeField] private float _attackRange = 1.5f;
     [SerializeField] private float _acceleration = 10.0f;
     [SerializeField] private float _stoppingDistance = 0.25f;
+    [SerializeField] private Renderer _renderer;
 
     private Coroutine _decisionCoroutine;
+    private MaterialPropertyBlock _materialPropertyBlock;
 
     private static List<Enemy> _alive = new List<Enemy>();
     private static List<Enemy> _corpses = new List<Enemy>();
@@ -28,6 +31,7 @@ public class Enemy : Entity
         NavMeshAgent.angularSpeed = AngularSpeed;
         NavMeshAgent.acceleration = _acceleration;
         NavMeshAgent.stoppingDistance = _stoppingDistance;
+        _materialPropertyBlock = new MaterialPropertyBlock();
     }
 
     protected override void OnEnable()
@@ -57,6 +61,16 @@ public class Enemy : Entity
         if (!CurrentState.IsDead()) UpdateMovementAnimation();
     }
 
+    public override void OnPointerEnter(PointerEventData _)
+    {
+        SetHighlightColor(GameSettings.HighlightColor);
+    }
+
+    public override void OnPointerExit(PointerEventData _)
+    {
+        SetHighlightColor(GameSettings.NonHighlightColor);
+    }
+
     private IEnumerator OnDecisionCoroutine()
     {
         yield return new WaitForSeconds(UnityEngine.Random.Range(0.0f, DecisionInterval));
@@ -64,7 +78,7 @@ public class Enemy : Entity
         {
             switch (CurrentState)
             {
-                case State.Default:
+            case State.Default:
                     UpdateDestination();
                     TryAttackPlayer();
                     break;
@@ -106,6 +120,12 @@ public class Enemy : Entity
         _alive.Remove(this);
         StopCoroutine(_decisionCoroutine);
         PlayerCharacter.OnPlayerDead -= OnPlayerDead;
+    }
+
+    private void SetHighlightColor(Color color)
+    {
+        _materialPropertyBlock.SetColor(GameSettings.EmissionColor, color);
+        _renderer.SetPropertyBlock(_materialPropertyBlock);
     }
 
     private void OnPlayerDead()

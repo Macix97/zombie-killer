@@ -17,3 +17,5 @@ MonoBehaviour:
   _gameOverDelay: 5
   _sceneFadingTime: 0.5
   _effectLifeTime: 5
+  _highlightColor: {r: 0.35, g: 0, b: 0, a: 1}
+  _nonHighlightColor: {r: 0, g: 0, b: 0, a: 1}

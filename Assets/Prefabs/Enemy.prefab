@@ -1200,6 +1200,7 @@ MonoBehaviour:
   _attackRange: 1.5
   _acceleration: 10
   _stoppingDistance: 0.25
+  _renderer: {fileID: 4115386045330888002}
 --- !u!1 &4288389679677027473
 GameObject:
   m_ObjectHideFlags: 0
