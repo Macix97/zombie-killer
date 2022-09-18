@@ -13,9 +13,4 @@ https://assetstore.unity.com/
 Fonts provides 1001 Fonts:
 1001 Fonts: https://www.1001fonts.com/
 
-1. Immortal Font
-Author: Apostrophic Labs
-Link: https://www.1001fonts.com/immortal-font.html
-Changes: No changes made
-
 The author of the project would like to thank you for the provided materials.
